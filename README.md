@@ -8,6 +8,75 @@ Created & Developed by **Devendra Gupta** — BIM Automation Consultant at BMSI,
 
 ---
 
+## 🔰 How to Download & Run (Step-by-Step Guide for Beginners)
+
+If you have never used code or Git before, don't worry! You can easily get this AI Digital Twin dashboard running on your computer in less than 3 minutes.
+
+### 📋 Prerequisites (Only needed once)
+First, make sure you have **Node.js** installed on your computer:
+1. Download Node.js (LTS Version) from: 👉 **[https://nodejs.org/](https://nodejs.org/)**
+2. Run the installer and click **Next** until installation finishes.
+
+---
+
+### Option A: Using Git Clone (Recommended & Easiest)
+
+#### Step 1: Open Terminal / Command Prompt
+- On **Windows**: Press `Win + R`, type `cmd`, and press **Enter**.
+- On **Mac**: Press `Cmd + Space`, type `Terminal`, and press **Enter**.
+
+#### Step 2: Clone the Repository
+Copy and paste this command into your terminal, then press **Enter**:
+```bash
+git clone https://github.com/devendragupta-BIM/CEC-civil-department-virtual-digital-twin-dashboard.git
+```
+
+#### Step 3: Enter the Project Folder
+Type this command and press **Enter**:
+```bash
+cd CEC-civil-department-virtual-digital-twin-dashboard
+```
+
+#### Step 4: Install Required Packages
+Type this command and press **Enter**:
+```bash
+npm install
+```
+*(Wait 30 seconds for packages to install automatically)*
+
+#### Step 5: Start the Dashboard!
+Type this command and press **Enter**:
+```bash
+npm run dev
+```
+
+#### Step 6: Open in Your Browser
+Open Chrome, Edge, Safari, or Firefox and go to:
+👉 **`http://localhost:3000/`**
+
+---
+
+### Option B: Download as ZIP File (No Git Required)
+
+1. Click the green **`Code`** button at the top right of this GitHub page.
+2. Select **`Download ZIP`**.
+3. Unzip/Extract the downloaded folder onto your Desktop or computer.
+4. Open your **Command Prompt** or **Terminal**.
+5. Type `cd ` (with a space) and drag & drop the unzipped folder into the terminal window, then press **Enter**.
+6. Run:
+   ```bash
+   npm install
+   ```
+7. Run:
+   ```bash
+   npm run dev
+   ```
+8. Open your browser to: 👉 **`http://localhost:3000/`**
+
+🎉 **That's it!** The 3D rotating building and live AI dashboard will appear on your screen!
+
+---
+
 ## 🌟 Highlights & Features
 
 - **3D Procedural BIM Model**: Faithfully recreated in Three.js from Autodesk Revit & Navisworks (`CIVIL DEPARTMENT CEC 01.nwc`), featuring G+2 floors, cream facade with red horizontal band courses, 4 projecting corner towers with top apertures, double window wings, and entrance portico signage.
@@ -15,44 +84,6 @@ Created & Developed by **Devendra Gupta** — BIM Automation Consultant at BMSI,
 - **AI Anomaly Detection Engine**: Isolation Forest ML simulation flagging real-time indoor air quality (CO2 spikes up to 1600 ppm) and thermal variances.
 - **Natural Language AI Query Bar**: Ask questions in plain English (e.g., *"Which floor has highest CO2?"*, *"What is total energy load?"*).
 - **Cinematic Glassmorphism UI**: NASA mission-control dark theme (`#040810`), real-time Chart.js energy trend graph, dynamic SVG building health score arc (0–100), alert popups, and scanline overlay.
-
----
-
-## 🔰 Simple Step-by-Step Guide (For Non-Technical Users)
-
-You don't need any programming background to run this digital twin dashboard! Follow these simple steps:
-
-### Step 1: Install Node.js (Only required once)
-1. Download **Node.js** (LTS version) from the official website: 👉 **[https://nodejs.org/](https://nodejs.org/)**
-2. Run the downloaded installer (`.msi` file) and click **Next** through all prompts until installation completes.
-
-### Step 2: Open Command Prompt or Terminal
-1. Press `Windows Key + R` on your keyboard.
-2. Type `cmd` and press **Enter**.
-3. Navigate to this project folder by typing:
-   ```cmd
-   cd "path\to\CEC-civil-department-virtual-digital-twin-dashboard"
-   ```
-   *(Replace `path\to\...` with where you saved this folder on your computer)*.
-
-### Step 3: Install Project Packages
-Type the following command and press **Enter**:
-```bash
-npm install
-```
-*Wait about 30 seconds for the packages to download automatically.*
-
-### Step 4: Launch the Digital Twin Dashboard!
-Type the following command and press **Enter**:
-```bash
-npm run dev
-```
-
-### Step 5: View in Your Web Browser
-Open your internet browser (Chrome, Edge, Firefox, or Safari) and go to:
-👉 **`http://localhost:3000/`**
-
-🎉 **Congratulations!** Your 3D AI Digital Twin Dashboard is now live and rotating on your screen!
 
 ---
 
