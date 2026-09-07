@@ -79,7 +79,7 @@ export default function LoadingScreen({ onComplete }) {
         <p className="text-xs text-slate-400 tracking-wide mb-8 max-w-md">
           Department of Civil Engineering · Jharkhand University of Technology (JUT), Ranchi
           <span className="block text-cyan-300/80 font-medium mt-1">
-            Modeled & Built by Devendra Gupta · BIM Automation Professional
+            Modeled & Built by Devendra Gupta · BIM Automation Consultant at BMSI, Gurugram
           </span>
         </p>
 

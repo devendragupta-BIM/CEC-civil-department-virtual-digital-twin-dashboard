@@ -326,7 +326,7 @@ export default function RightSidebar() {
       {/* FOOTER: DEVENDRA GUPTA CREDITS */}
       <footer className="pt-2 border-t border-white/10 text-center">
         <p className="text-[9px] text-slate-400 leading-tight">
-          Built by <strong className="text-cyan-300">Devendra Gupta</strong> · BIM Automation Professional · BMSI Gurugram
+          Built by <strong className="text-cyan-300">Devendra Gupta</strong> · BIM Automation Consultant at BMSI, Gurugram
         </p>
         <p className="text-[8px] text-slate-400/80 mt-0.5">
           Published: Automation in Construction (Elsevier) · JUT Civil Dept 2025

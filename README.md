@@ -4,9 +4,7 @@
 [![Building](https://img.shields.io/badge/Building-Chaibasa%20Engineering%20College-00ff88?style=for-the-badge)](https://www.chaibasaengg.edu.in/)
 [![University](https://img.shields.io/badge/University-JUT%20Ranchi-8855ff?style=for-the-badge)](https://jutranchi.ac.in/)
 
-> **Enterprise-grade BIM Intelligence & IoT Digital Twin Dashboard** for the **Department of Civil Engineering, Chaibasa Engineering College (CEC), Jharkhand University of Technology (JUT), Ranchi, Jharkhand, India**.
-
-Created & Developed by **Devendra Gupta** — BIM Automation Professional at BMSI Gurugram & Author published in **Automation in Construction (Elsevier)**.
+Created & Developed by **Devendra Gupta** — BIM Automation Consultant at BMSI, Gurugram.
 
 ---
 
@@ -77,22 +75,10 @@ Open your internet browser (Chrome, Edge, Firefox, or Safari) and go to:
 
 ---
 
-## 📄 Academic & Industry Citation
-
-If you use this digital twin framework in your research, scholarship applications, or BIM portfolio, please cite:
-
-```text
-Gupta, D. (2025). AI Digital Twin & BIM Intelligence Dashboard for Academic Infrastructure.
-Automation in Construction, Elsevier.
-Department of Civil Engineering, Chaibasa Engineering College, JUT Ranchi.
-```
-
----
-
 ## 👨‍💻 Author Profile
 
 **Devendra Gupta**
-* BIM Automation Professional | BMSI Gurugram
+* BIM Automation Consultant | BMSI, Gurugram
 * Specialization: BIM + AI Integration, IoT Digital Twins, Revit Automation & Computational Design
 * Email: [devendragupta.bim@gmail.com](mailto:devendragupta.bim@gmail.com)
 * GitHub: [@devendragupta-BIM](https://github.com/devendragupta-BIM)
