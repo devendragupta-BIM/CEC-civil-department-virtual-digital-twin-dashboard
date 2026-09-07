@@ -1,0 +1,251 @@
+import React, { createContext, useContext, useState, useEffect } from 'react';
+
+const SensorContext = createContext();
+
+export const initialFloorData = [
+  {
+    id: 0,
+    name: 'Ground Floor',
+    subLabel: 'Reception · HOD Office · Staff Room',
+    code: 'GF',
+    temperature: 24.2,
+    humidity: 52,
+    co2: 680,
+    occupancy: 28,
+    energy: 14.5,
+    noise: 48,
+    vibration: 0.12,
+    lux: 450,
+  },
+  {
+    id: 1,
+    name: 'First Floor',
+    subLabel: 'Structural Lab · Concrete Lab · Corridor',
+    code: '1F',
+    temperature: 27.8,
+    humidity: 61,
+    co2: 890,
+    occupancy: 35,
+    energy: 22.8,
+    noise: 64,
+    vibration: 0.35,
+    lux: 580,
+  },
+  {
+    id: 2,
+    name: 'Second Floor',
+    subLabel: 'Classrooms · Drawing Hall · Computer Lab',
+    code: '2F',
+    temperature: 32.4, // Permanent Warning/Critical
+    humidity: 58,
+    co2: 1480,       // Permanent Anomaly (Critical)
+    occupancy: 38,
+    energy: 26.4,
+    noise: 55,
+    vibration: 0.18,
+    lux: 620,
+  },
+  {
+    id: 3,
+    name: 'Electrical DB',
+    subLabel: 'Main DB · UPS · Backup Gen',
+    code: 'MEP-E',
+    temperature: 29.5,
+    humidity: 45,
+    co2: 420,
+    occupancy: 2,
+    energy: 18.2,
+    noise: 58,
+    vibration: 0.25,
+    lux: 300,
+  },
+  {
+    id: 4,
+    name: 'Plumbing & Water',
+    subLabel: 'OHT · Pump Room · Drainage',
+    code: 'MEP-P',
+    temperature: 23.0,
+    humidity: 78,
+    co2: 450,
+    occupancy: 1,
+    energy: 8.5,
+    noise: 52,
+    vibration: 0.42,
+    lux: 250,
+  },
+  {
+    id: 5,
+    name: 'Ventilation HVAC',
+    subLabel: 'Exhaust · Air handlers · Ducting',
+    code: 'MEP-V',
+    temperature: 25.5,
+    humidity: 50,
+    co2: 510,
+    occupancy: 0,
+    energy: 12.1,
+    noise: 68,
+    vibration: 0.31,
+    lux: 350,
+  },
+  {
+    id: 6,
+    name: 'AI Engine',
+    subLabel: 'Isolation Forest · Anomaly Detection',
+    code: 'AI-SYS',
+    temperature: 21.0,
+    humidity: 40,
+    co2: 400,
+    occupancy: 0,
+    energy: 3.2,
+    noise: 32,
+    vibration: 0.05,
+    lux: 400,
+  }
+];
+
+export function SensorProvider({ children }) {
+  const [selectedFloorId, setSelectedFloorId] = useState(0);
+  const [floors, setFloors] = useState(initialFloorData);
+  const [energyHistory, setEnergyHistory] = useState([78, 81, 85, 83, 89, 94, 91, 95, 98, 102, 104, 101, 99, 105, 103, 106, 108, 105, 107, 105.6]);
+  const [alerts, setAlerts] = useState([
+    { id: 1, time: '22:15:02', floor: 'Second Floor', type: 'CO2 Anomaly', level: 'critical', msg: 'Classroom CO2 level reached 1480 ppm (Threshold: 1200 ppm)' },
+    { id: 2, time: '22:14:30', floor: 'Second Floor', type: 'HVAC Thermal', level: 'warning', msg: 'Ambient temp elevated at 32.4°C in Drawing Hall' },
+    { id: 3, time: '22:10:15', floor: 'First Floor', type: 'Vibration Peak', level: 'info', msg: 'Concrete Compression Testing Machine operational in Lab' }
+  ]);
+  const [latestPopup, setLatestPopup] = useState(null);
+
+  // Periodic sensor ticker every 2500ms
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const timestamp = new Date().toTimeString().split(' ')[0];
+
+      setFloors(prevFloors => {
+        return prevFloors.map(floor => {
+          if (floor.id === 2) {
+            // Floor 2 permanent anomaly rule
+            const newCo2 = Math.floor(1350 + Math.random() * 250);
+            const newTemp = Number((31.0 + Math.random() * 3).toFixed(1));
+            const newEnergy = Number((24 + Math.random() * 5).toFixed(1));
+            return {
+              ...floor,
+              co2: newCo2,
+              temperature: newTemp,
+              energy: newEnergy,
+              humidity: Math.floor(52 + Math.random() * 10),
+              occupancy: Math.floor(32 + Math.random() * 8),
+              noise: Math.floor(52 + Math.random() * 12),
+            };
+          } else if (floor.id <= 2) {
+            return {
+              ...floor,
+              temperature: Number((22 + Math.random() * 5).toFixed(1)),
+              humidity: Math.floor(45 + Math.random() * 20),
+              co2: Math.floor(500 + Math.random() * 450),
+              occupancy: Math.floor(15 + Math.random() * 20),
+              energy: Number((12 + Math.random() * 12).toFixed(1)),
+              noise: Math.floor(40 + Math.random() * 25),
+              vibration: Number((0.1 + Math.random() * 0.3).toFixed(2)),
+            };
+          } else {
+            return {
+              ...floor,
+              energy: Number((5 + Math.random() * 15).toFixed(1)),
+              temperature: Number((20 + Math.random() * 8).toFixed(1)),
+            };
+          }
+        });
+      });
+
+      // Update total energy history
+      setFloors(currentFloors => {
+        const totalKW = currentFloors.reduce((acc, f) => acc + f.energy, 0);
+        setEnergyHistory(prev => [...prev.slice(1), Number(totalKW.toFixed(1))]);
+        return currentFloors;
+      });
+
+      // Trigger high priority alert periodically for demo richness
+      if (Math.random() > 0.6) {
+        const newCo2Val = Math.floor(1450 + Math.random() * 150);
+        const alertObj = {
+          id: Date.now(),
+          time: timestamp,
+          floor: 'Second Floor',
+          type: 'High CO2 Anomaly',
+          level: 'critical',
+          msg: `Isolation Forest flagged CO2 spike (${newCo2Val} ppm) in 2F Classroom 204`
+        };
+        setAlerts(prev => [alertObj, ...prev.slice(0, 15)]);
+        setLatestPopup(alertObj);
+      }
+
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Compute building metrics
+  const totalOccupancy = floors.filter(f => f.id <= 2).reduce((acc, f) => acc + f.occupancy, 0);
+  const totalEnergy = Number(floors.reduce((acc, f) => acc + f.energy, 0).toFixed(1));
+  const avgTemp = Number((floors.slice(0, 3).reduce((acc, f) => acc + f.temperature, 0) / 3).toFixed(1));
+  const avgCo2 = Math.round(floors.slice(0, 3).reduce((acc, f) => acc + f.co2, 0) / 3);
+
+  // Compute active anomalies count
+  const criticalCount = floors.filter(f => f.co2 > 1300 || f.temperature > 33 || f.vibration > 0.8).length;
+  const warningCount = floors.filter(f => (f.co2 > 1000 && f.co2 <= 1300) || (f.temperature > 30 && f.temperature <= 33) || f.energy > 28).length;
+
+  // Calculate overall building health score (0-100)
+  let healthScore = 100 - (criticalCount * 14) - (warningCount * 6);
+  if (healthScore < 35) healthScore = 35;
+
+  const activeFloor = floors.find(f => f.id === selectedFloorId) || floors[0];
+
+  // Natural Language Query Engine
+  const answerQuery = (queryText) => {
+    const q = queryText.toLowerCase();
+    if (q.includes('co2') || q.includes('carbon') || q.includes('air')) {
+      const highestCo2Floor = [...floors].sort((a, b) => b.co2 - a.co2)[0];
+      return `📊 **Air Quality Analysis**: ${highestCo2Floor.name} currently exhibits the highest CO2 concentration at **${highestCo2Floor.co2} ppm** (Threshold: 1000 ppm). Recommendation: Increase HVAC fresh air damper position on Floor 2.`;
+    }
+    if (q.includes('temp') || q.includes('heat') || q.includes('hot')) {
+      const hottestFloor = [...floors].sort((a, b) => b.temperature - a.temperature)[0];
+      return `🌡️ **Thermal Inspection**: ${hottestFloor.name} recorded highest temperature of **${hottestFloor.temperature}°C**. Ambient HVAC setpoint calibration is recommended.`;
+    }
+    if (q.includes('energy') || q.includes('power') || q.includes('load') || q.includes('kw')) {
+      return `⚡ **Power Demand**: Total building electrical load is **${totalEnergy} kW**. Highest consumption is observed in **${[...floors].sort((a,b)=>b.energy-a.energy)[0].name}** at **${[...floors].sort((a,b)=>b.energy-a.energy)[0].energy} kW**.`;
+    }
+    if (q.includes('occup') || q.includes('people') || q.includes('student') || q.includes('headcount')) {
+      return `👥 **Occupancy Count**: Current active building headcount is **${totalOccupancy} occupants** across all 3 floors (GF: ${floors[0].occupancy}, 1F: ${floors[1].occupancy}, 2F: ${floors[2].occupancy}).`;
+    }
+    if (q.includes('alert') || q.includes('anomaly') || q.includes('risk') || q.includes('health')) {
+      return `🛡️ **Health & Integrity**: Overall building health score is **${healthScore}/100**. ${criticalCount} Critical and ${warningCount} Warning anomalies active. Primary driver: Second Floor CO2 accumulation.`;
+    }
+    return `🤖 **BIM AI Agent**: Chaibasa Engineering College Civil Dept digital twin active. Sensors: 25 live streams. Structural integrity nominal. High CO2 anomaly detected on 2F Classrooms. Ask about CO2, Temperature, Energy, or Headcount!`;
+  };
+
+  return (
+    <SensorContext.Provider value={{
+      selectedFloorId,
+      setSelectedFloorId,
+      floors,
+      activeFloor,
+      totalOccupancy,
+      totalEnergy,
+      avgTemp,
+      avgCo2,
+      criticalCount,
+      warningCount,
+      healthScore,
+      energyHistory,
+      alerts,
+      latestPopup,
+      setLatestPopup,
+      answerQuery
+    }}>
+      {children}
+    </SensorContext.Provider>
+  );
+}
+
+export function useSensor() {
+  return useContext(SensorContext);
+}
