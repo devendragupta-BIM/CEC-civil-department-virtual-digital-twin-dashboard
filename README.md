@@ -1,16 +1,27 @@
 # 🏢 Chaibasa Engineering College Civil Dept — AI Digital Twin Dashboard
 
+[![Live Dashboard Demo](https://img.shields.io/badge/Live%20Demo-View%20Digital%20Twin-00d4ff?style=for-the-badge&logo=googlechrome)](https://devendragupta-BIM.github.io/CEC-civil-department-virtual-digital-twin-dashboard/)
 [![Published in Automation in Construction](https://img.shields.io/badge/Published-Automation%20in%20Construction%20(Elsevier)-00d4ff?style=for-the-badge&logo=elsevier)](https://www.sciencedirect.com/journal/automation-in-construction)
 [![Building](https://img.shields.io/badge/Building-Chaibasa%20Engineering%20College-00ff88?style=for-the-badge)](https://www.chaibasaengg.edu.in/)
 [![University](https://img.shields.io/badge/University-JUT%20Ranchi-8855ff?style=for-the-badge)](https://jutranchi.ac.in/)
+
+> 🌐 **Live Public Web Link**: [https://devendragupta-BIM.github.io/CEC-civil-department-virtual-digital-twin-dashboard/](https://devendragupta-BIM.github.io/CEC-civil-department-virtual-digital-twin-dashboard/)
 
 Created & Developed by **Devendra Gupta** — BIM Automation Consultant at BMSI, Gurugram.
 
 ---
 
-## 🔰 How to Download & Run (Step-by-Step Guide for Beginners)
+## 🌐 Live Online Access (Shareable Link)
 
-If you have never used code or Git before, don't worry! You can easily get this AI Digital Twin dashboard running on your computer in less than 3 minutes.
+You can share this live web link with anyone (professors, researchers, students, or clients) to view and interact with the 3D Digital Twin directly in their browser without downloading anything:
+
+👉 **[https://devendragupta-BIM.github.io/CEC-civil-department-virtual-digital-twin-dashboard/](https://devendragupta-BIM.github.io/CEC-civil-department-virtual-digital-twin-dashboard/)**
+
+---
+
+## 🔰 How to Run Locally (Step-by-Step Guide for Beginners)
+
+If you want to run the project on your local computer:
 
 ### 📋 Prerequisites (Only needed once)
 First, make sure you have **Node.js** installed on your computer:
@@ -19,7 +30,7 @@ First, make sure you have **Node.js** installed on your computer:
 
 ---
 
-### Option A: Using Git Clone (Recommended & Easiest)
+### Option A: Using Git Clone (Recommended)
 
 #### Step 1: Open Terminal / Command Prompt
 - On **Windows**: Press `Win + R`, type `cmd`, and press **Enter**.
@@ -42,7 +53,6 @@ Type this command and press **Enter**:
 ```bash
 npm install
 ```
-*(Wait 30 seconds for packages to install automatically)*
 
 #### Step 5: Start the Dashboard!
 Type this command and press **Enter**:
@@ -50,7 +60,7 @@ Type this command and press **Enter**:
 npm run dev
 ```
 
-#### Step 6: Open in Your Browser
+#### Step 6: View in Your Browser
 Open Chrome, Edge, Safari, or Firefox and go to:
 👉 **`http://localhost:3000/`**
 
